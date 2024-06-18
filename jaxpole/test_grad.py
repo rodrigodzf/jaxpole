@@ -62,4 +62,4 @@ def test_low_order(
     
     batch_size = 4
     x, A, zi = create_test_inputs(batch_size, samples, cmplx)
-    check_grads(allpole, (x, A, zi), order=1, modes=("rev"))
+    check_grads(allpole, (x, A, zi), order=2, modes=("rev"))
