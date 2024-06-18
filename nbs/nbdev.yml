@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "jaxpole"
+  site-url: "https://rodrigodzf.github.io/jaxpole"
+  description: "A differentiable implementation of an all-pole in JAX"
+  repo-branch: main
+  repo-url: "https://github.com/rodrigodzf/jaxpole"
