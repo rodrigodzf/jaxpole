@@ -9,6 +9,7 @@ d = { 'settings': { 'branch': 'main',
                                 'jaxpole.filter.allpole': ('filter.html#allpole', 'jaxpole/filter.py'),
                                 'jaxpole.filter.allpole_bwd': ('filter.html#allpole_bwd', 'jaxpole/filter.py'),
                                 'jaxpole.filter.allpole_fwd': ('filter.html#allpole_fwd', 'jaxpole/filter.py')},
-            'jaxpole.test_grad': { 'jaxpole.test_grad.create_test_inputs': ('test_grad.html#create_test_inputs', 'jaxpole/test_grad.py'),
+            'jaxpole.test_grad': { 'jaxpole.test_grad.allpole_np': ('test_grad.html#allpole_np', 'jaxpole/test_grad.py'),
+                                   'jaxpole.test_grad.create_test_inputs': ('test_grad.html#create_test_inputs', 'jaxpole/test_grad.py'),
                                    'jaxpole.test_grad.get_random_biquads': ('test_grad.html#get_random_biquads', 'jaxpole/test_grad.py'),
-                                   'jaxpole.test_grad.test_low_order': ('test_grad.html#test_low_order', 'jaxpole/test_grad.py')}}}
+                                   'jaxpole.test_grad.test_all': ('test_grad.html#test_all', 'jaxpole/test_grad.py')}}}

@@ -11,8 +11,8 @@ from jax import custom_vjp, custom_jvp
 
 # %% ../nbs/filter.ipynb 3
 def all_pole_direct_form_I(
-    x: jnp.ndarray,  # (time, n_coeffs,)
-    a: jnp.ndarray,  # (time,)
+    x: jnp.ndarray,  # (time,)
+    a: jnp.ndarray,  # (time, n_coeffs,)
     zi: jnp.ndarray = None,  # (n_coeffs,) initial state
 ):
     """
@@ -21,10 +21,10 @@ def all_pole_direct_form_I(
 
     def f(carry, input):
         x, a = input
-        y = x - jnp.sum(jnp.flip(carry) * a)
+        y = x - jnp.flip(carry) @ a
         # we always move in a stride of 1 so we stack all the
         # values after the first one and the current value
-        curr = jnp.stack([carry[1:].squeeze(0), y], axis=0)
+        curr = jnp.concatenate([carry[1:], y.reshape(-1)])
         return curr, y
 
     _, y = jax.lax.scan(f=f, init=jnp.flip(zi, axis=-1), xs=(x, a))
