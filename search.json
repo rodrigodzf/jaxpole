@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "jaxpole",
+    "section": "",
+    "text": "This is an implementation of a differentiable time-varying all-pole filter in JAX based on torchlpc.",
+    "crumbs": [
+      "jaxpole"
+    ]
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "jaxpole",
+    "section": "Install",
+    "text": "Install\npip install jaxpole\nor locally from source\npip install -e '.[dev]'",
+    "crumbs": [
+      "jaxpole"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "jaxpole",
+    "section": "How to use",
+    "text": "How to use\n\nimport jax.numpy as jnp\nimport jax\nfrom jaxpole.filter import allpole\n\npole = 0.99 * jnp.exp(1j * jnp.pi / 4)\ncoeffs = jnp.array([-2 * pole.real, pole.real**2 + pole.imag**2])\nx = jax.random.normal(jax.random.PRNGKey(0), (1, 1000)) # (B, T)\nA = jnp.tile(coeffs, (1, x.shape[-1], 1)) # (B, T, P)\nzi = jnp.zeros((1, A.shape[-1])) # (B, P)\n\n# filter the signal\ny = allpole(x, A, zi)",
+    "crumbs": [
+      "jaxpole"
+    ]
+  },
+  {
+    "objectID": "filter.html",
+    "href": "filter.html",
+    "title": "Differentiable All-pole Filter",
+    "section": "",
+    "text": "source\n\nallpole\n\n allpole (x:jax.Array, A:jax.Array, zi:jax.Array=None)\n\nApply an all-pole filter defined by the coefficients A to the input signal x.\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nx\nArray\n\n(B, time)\n\n\nA\nArray\n\n(B, time, n_coeffs)\n\n\nzi\nArray\nNone\n(B, n_coeffs) initial state\n\n\n\n\nsource\n\n\nallpole_fwd\n\n allpole_fwd (x, A, zi)\n\n\nsource\n\n\nallpole_bwd\n\n allpole_bwd (res, grad_y)\n\n\nsource\n\n\nall_pole_direct_form_I\n\n all_pole_direct_form_I (x:jax.Array, a:jax.Array, zi:jax.Array=None)\n\nApply an all-pole filter defined by the coefficients a to the input signal x.\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nx\nArray\n\n(time,)\n\n\na\nArray\n\n(time, n_coeffs,)\n\n\nzi\nArray\nNone\n(n_coeffs,) initial state",
+    "crumbs": [
+      "Differentiable All-pole Filter"
+    ]
+  },
+  {
+    "objectID": "test_grad.html",
+    "href": "test_grad.html",
+    "title": "Testing",
+    "section": "",
+    "text": "source\n\nallpole_np\n\n allpole_np (x:numpy.ndarray, A:numpy.ndarray, zi:numpy.ndarray)\n\nReference implementation of the allpole filter.\n\n\n\n\nType\nDetails\n\n\n\n\nx\nndarray\n(B, time,)\n\n\nA\nndarray\n(B, time, order)\n\n\nzi\nndarray\n(B, order,)\n\n\nReturns\nndarray\n\n\n\n\n\nsource\n\n\ncreate_test_inputs\n\n create_test_inputs (batch_size, samples, cmplx=False, seed=None, p=2)\n\n\nsource\n\n\nget_random_biquads\n\n get_random_biquads (cmplx=False, rng=None)\n\n\nsource\n\n\ntest_all\n\n test_all (samples:int, cmplx:bool, p:int)",
+    "crumbs": [
+      "Testing"
+    ]
+  }
+]
