@@ -24,13 +24,13 @@ pip install -e '.[dev]'
 ``` python
 import jax.numpy as jnp
 import jax
+from jaxpole.filter import allpole
 
 pole = 0.99 * jnp.exp(1j * jnp.pi / 4)
 coeffs = jnp.array([-2 * pole.real, pole.real**2 + pole.imag**2])
-
 x = jax.random.normal(jax.random.PRNGKey(0), (1, 1000)) # (B, T)
 A = jnp.tile(coeffs, (1, x.shape[-1], 1)) # (B, T, P)
-zi = jnp.zeros((1, 2)) # (B, P)
+zi = jnp.zeros((1, A.shape[-1])) # (B, P)
 
 # filter the signal
 y = allpole(x, A, zi)
